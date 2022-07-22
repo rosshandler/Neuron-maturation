@@ -1,1 +1,1 @@
-# Exploratory Analysis using the atlas of mouse brain development 
+# Exploratory analysis using the atlas of mouse brain development 
