@@ -1,4 +1,5 @@
-import scanpy as s
+import pandas as pd
+import scanpy as sc
   
 adata = sc.read('dev_all.loom')
 
@@ -8,3 +9,18 @@ adata = sc.read('dev_all.loom')
 #    obsm: 'BTSNE', 'HPF', 'HPF_theta', 'PCA', 'TSNE', 'UMAP', 'UMAP3D'
 #    varm: 'HPF', 'HPF_beta', 'MultilevelMarkers'
 #    layers: 'matrix', 'expected', 'pooled', 'spliced', 'unspliced'
+
+adata.obs['Class'].unique()
+#array(['Gastrulation', 'Radial glia', 'Mesenchyme', 'Neural tube',
+#       'Mesoderm', 'Neural crest', 'Bad cells', 'Endoderm', 'Ectoderm',
+#       'Blood', 'Fibroblast', 'Vascular', 'Immune', 'Glioblast',
+#       'Choroid plexus', 'Ependymal', 'Pineal gland',
+#       'Subcommissural organ', 'Olfactory ensheathing cell',
+#       'Schwann cell', 'Oligodendrocyte', 'Neuroblast', 'Undefined',
+#       'Neuron'], dtype=object)
+
+
+pd.DataFrame(adata.obs).to_csv('metadata.csv')
+pd.DataFrame(adata.obsm['PCA']).to_csv('pca.csv')
+pd.DataFrame(adata.obs_names).to_csv('cell_names.csv')
+pd.DataFrame(adata.var_names).to_csv('genes_names.csv')
