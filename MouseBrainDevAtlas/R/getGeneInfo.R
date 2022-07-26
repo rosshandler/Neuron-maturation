@@ -16,4 +16,6 @@ gene_tab <- getBM(attributes = c('hgnc_symbol', 'ensembl_gene_id', 'chromosome_n
       values = data$Gene, 
       mart = ensembl)
 
+print(gene_tab) 
+
 setdiff(data$Gene,gene_tab$hgnc_symbol)
