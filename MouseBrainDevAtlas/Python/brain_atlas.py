@@ -2,7 +2,10 @@ import pandas as pd
 import scanpy as sc
   
 adata = sc.read('dev_all.loom')
+sc.write('brain_atlas.h5ad', adata)
 
+
+adata = sc.read('brain_atlas.h5ad')
 #AnnData object with n_obs × n_vars = 292495 × 31053 
 #    obs: 'Age', 'CellCycle', 'Cell_Conc', 'Chemistry', 'ChipID', 'Class', 'ClusterName', 'Clusters', 'Date_Captured', 'DonorID', 'DoubletFinderPCA', 'HPF_LogPP', 'IsCycling', 'Label', 'Location_E9_E11', 'NCellsCluster', 'NGenes', 'Num_Pooled_Animals', 'PCR_Cycles', 'Plug_Date', 'Project', 'PseudoAge', 'PseudoTissue', 'Region', 'SampleID', 'SampleName', 'Sample_Index', 'Sex', 'Species', 'Split', 'Strain', 'Subclass', 'Target_Num_Cells', 'Tissue', 'TotalUMI', 'Transcriptome', 'cDNA_Lib_Ok', 'ngperul_cDNA'
 #    var: 'Accession', 'Chromosome', 'End', 'Gamma', 'Selected', 'Start', 'Strand', 'Valid'
@@ -24,4 +27,10 @@ pd.DataFrame(adata.obs).to_csv('metadata.csv')
 pd.DataFrame(adata.obsm['PCA']).to_csv('pca.csv')
 pd.DataFrame(adata.obs_names).to_csv('cell_names.csv')
 pd.DataFrame(adata.var_names).to_csv('genes_names.csv')
+
+adata.var_names_make_unique()
+
+scanpy.pp.filter_genes(adata, min_cells=10)
+
+adata_hvgs = sc.pp.highly_variable_genes(adata, layer='matrix', subset=True)
 
