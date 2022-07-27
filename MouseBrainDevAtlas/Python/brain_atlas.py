@@ -24,3 +24,4 @@ pd.DataFrame(adata.obs).to_csv('metadata.csv')
 pd.DataFrame(adata.obsm['PCA']).to_csv('pca.csv')
 pd.DataFrame(adata.obs_names).to_csv('cell_names.csv')
 pd.DataFrame(adata.var_names).to_csv('genes_names.csv')
+
