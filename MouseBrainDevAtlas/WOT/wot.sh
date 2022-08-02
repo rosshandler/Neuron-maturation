@@ -1,9 +1,9 @@
 wot optimal_transport --matrix data/PCA.txt --cell_days data/cell_days.txt \
   --local_pca 0 --growth_iters 3 --out tmaps/pca --verbose
 
-wot trajectory --tmap tmaps/pca --cell_set data/neurons_cell_set.gmt --day 18 
+wot trajectory --tmap tmaps/pca --cell_set data/neurons_cell_set.gmt --day 18 --out Neuron
 
-wot trajectory_trends --trajectory data/wot_trajectory.txt --cell_days data/cell_days.txt --matrix data/brain_atlas.h5ad
+wot trajectory_trends --trajectory data/Neuron_trajectory.txt --cell_days data/cell_days.txt --matrix data/brain_atlas.h5ad
 
 
 table(d[grep('Neuron', d$Class),]$Age)
