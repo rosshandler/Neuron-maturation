@@ -2,7 +2,7 @@ wot optimal_transport --matrix data/PCA.txt --cell_days data/cell_days.txt \
   --local_pca 0 --growth_iters 3 --out tmaps/pca --verbose
 
 wot optimal_transport_validation --matrix data/PCA.txt --cell_days data/cell_days.txt \
---cell_growth_rates tmaps/pca_g.txt --cell_growth_rates_field g3 --verbose
+  --local_pca 0 --cell_growth_rates tmaps/pca_g.txt --cell_growth_rates_field g3 --verbose
 
 wot trajectory --tmap tmaps/pca --cell_set data/neurons_cell_set.gmt --day 18 --out Neuron
 
